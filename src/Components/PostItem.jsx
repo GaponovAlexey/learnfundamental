@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const PostItem = (props) => {
+export const PostItem = ({id, ...props}) => {
   return (
     <div>
       <div className='post'>
@@ -11,7 +11,7 @@ export const PostItem = (props) => {
           <div>{props.post.body}</div>
         </div>
         <div className='post__btns'>
-          <button>delet</button>
+          <button onClick={() => props.ButtonDelet(props.post.id)} >delet</button>
         </div>
       </div>
     </div>
