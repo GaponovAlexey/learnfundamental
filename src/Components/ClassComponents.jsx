@@ -1,0 +1,27 @@
+import React, { Component } from 'react'
+
+export class ClassComponents extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      count: 0,
+    }
+    this.increment = this.increment.bind(this)
+    this.dicrement = this.dicrement.bind(this)
+  }
+  increment() {
+    this.setState({ count: this.state.count + 1 })
+  }
+  dicrement() {
+    this.setState({count: this.state.count - 1})
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        <button onClick={this.increment}>+</button>
+        <button onClick={this.dicrement}>-</button>
+      </div>
+    )
+  }
+}
