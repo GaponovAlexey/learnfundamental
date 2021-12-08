@@ -2,6 +2,7 @@ import React from 'react'
 import { MyInput } from './UI/MyInput'
 import { MySelect } from './UI/MySelect'
 
+
 export const PostFilter = ({ filter, setFilter }) => {
   return (
     <div>
