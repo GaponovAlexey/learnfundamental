@@ -2,9 +2,8 @@ import { useMemo, useState } from 'react'
 import { PostList } from './Components/PostList'
 import './styles/App.css'
 import { PostFotm } from './Components/PostFotm'
-import { MySelect } from './Components/UI/MySelect'
-import { MyInput } from './Components/UI/MyInput'
 import { PostFilter } from './Components/PostFilter'
+import { MyModal } from './Components/UI/Modal/MyModal'
 function App() {
   const [posts, setPosts] = useState([
     { id: 1, title: 'Java', body: 'good' },
@@ -16,9 +15,9 @@ function App() {
     sort: '',
     query: '',
   })
+  const [modalof, setMODALOF] = useState(true)
 
   const sortedPost = useMemo(() => {
-    console.log('visov')
     if (filter.sort) {
       return [...posts].sort((a, b) =>
         a[filter.sort].localeCompare(b[filter.sort])
@@ -35,6 +34,7 @@ function App() {
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
+    setMODALOF(!modalof)
   }
 
   const ButtonDelet = (id) => {
@@ -43,7 +43,12 @@ function App() {
 
   return (
     <div className='App'>
-      <PostFotm create={createPost} />
+      <button
+      style={{marginTop: '20px'}}
+      onClick={() => setMODALOF(!modalof)}>создать пост</button>
+      <MyModal visible={modalof} setVisible={setMODALOF}>
+        <PostFotm create={createPost} />
+      </MyModal>
 
       <hr style={{ margin: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />

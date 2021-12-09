@@ -1,4 +1,5 @@
 import React from 'react'
+import { CSSTransition, Transition, TransitionGroup } from 'react-transition-group'
 import { PostItem } from './PostItem'
 
 export const PostList = ({ posts, title, ButtonDelet }) => {
@@ -8,14 +9,13 @@ export const PostList = ({ posts, title, ButtonDelet }) => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>{title}</h1>
-      {posts.map((post, index) => (
-        <PostItem
-          number={index}
-          post={post}
-          key={post.id}
-          ButtonDelet={ButtonDelet}
-        />
-      ))}
+      <TransitionGroup>
+        {posts.map((post, index) => (
+          <CSSTransition key={post.id} timeout={200} classNames='item'>
+            <PostItem number={index} post={post} ButtonDelet={ButtonDelet} />
+           </CSSTransition>
+        ))}
+      </TransitionGroup>
     </div>
   )
 }
