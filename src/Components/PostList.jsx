@@ -12,7 +12,7 @@ export const PostList = ({ posts, title, ButtonDelet }) => {
       <TransitionGroup>
         {posts.map((post, index) => (
           <CSSTransition key={post.id} timeout={200} classNames='post'>
-            <PostItem number={index} post={post} ButtonDelet={ButtonDelet} />
+            <PostItem number={post.id} post={post} ButtonDelet={ButtonDelet} />
            </CSSTransition>
         ))}
       </TransitionGroup>
