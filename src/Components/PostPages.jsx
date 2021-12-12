@@ -23,7 +23,7 @@ export const PostPages = () => {
     fetchingComents()
   }, [])
   return (
-    <div>
+    <div className='post_pages' >
       {!isLoading ? (
         <h3>
           {post.id} - {post.title}

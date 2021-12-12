@@ -55,3 +55,8 @@
 .post__btns {
   display: flex;
 }
+
+.post_pages {
+  height: 100;
+  max-width: 100vh;
+}
