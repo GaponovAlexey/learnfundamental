@@ -60,3 +60,18 @@
   height: 100;
   max-width: 100vh;
 }
+
+.page__wraper {
+  padding: 10px;
+}
+
+.page {
+  padding: 7px;
+  border: 1px solid teal;
+}
+.page__active {
+  border: 2px solid tan;
+  font-weight: bold;
+  cursor: pointer;
+
+}
