@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import PostService from '../API/PostServise'
-import { PostFilter } from '../Components/PostFilter'
-import { PostFotm } from '../Components/PostFotm'
-import { PostList } from '../Components/PostList'
+import { PostList } from '../Components/Item/PostList'
 import { MyModal } from '../Components/UI/Modal/MyModal'
 import { Pagination } from '../Components/UI/Pagination/Pagination'
 import { useFetching } from '../hook/useFetching'
 import { usePosts } from '../hook/usePosts'
 import '../styles/App.css'
 import { getPageCount } from '../utils/page'
+import { PostFilter } from '../Components/Filter/PostFilter'
+import { PostFotm } from '../Components/Form/PostFotm'
 
 
 export const Post = () => {

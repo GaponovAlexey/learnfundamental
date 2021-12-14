@@ -1,18 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { About } from '../pages/About'
+import { Login } from '../pages/Login'
 import { Nothing } from '../pages/Nothing'
 import { Post } from '../pages/Post'
-import { PostPages } from './PostPages'
+import { PostPages } from './PostPages/PostPages'
 
 export const AppRouter = () => {
+  const [isAuth, setISAUTH] = useState(true)
   return (
     <div>
-      <Routes>
-        <Route path='/posts' element={<Post />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/posts/:id' element={<PostPages />} />
-        <Route path='*' element={<Nothing />} />
+      <Routes >
+        {isAuth ? (
+          <>
+            <Route  path='/posts' element={<Post />} />
+            <Route path='/about' element={<About setISAUTH={setISAUTH} isAuth={isAuth} />} />
+            <Route path='/posts/:id' element={<PostPages />} />
+            <Route path='*' element={<Nothing />} />
+          </>
+        ) : (
+          <>
+            <Route path='/login' element={<Login setISAUTH={setISAUTH} isAuth={isAuth} />} />
+            <Route path='/*' element={<Login />} />
+          </>
+        )}
       </Routes>
     </div>
   )

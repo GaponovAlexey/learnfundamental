@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import PostService from '../API/PostServise'
-import { useFetching } from '../hook/useFetching'
+import PostService from '../../API/PostServise'
+import { useFetching } from '../../hook/useFetching'
 
 export const PostPages = () => {
   const params = useParams()

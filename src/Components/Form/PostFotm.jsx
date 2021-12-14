@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { MyButton } from './UI/MyButton'
-import { MyInput } from './UI/MyInput'
+import { MyButton } from '../UI/MyButton'
+import { MyInput } from '../UI/MyInput'
 
 export const PostFotm = ({ create }) => {
   const [post, setPost] = useState({ title: '', body: '' })
