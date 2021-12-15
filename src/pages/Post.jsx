@@ -10,7 +10,6 @@ import { getPageCount } from '../utils/page'
 import { PostFilter } from '../Components/Filter/PostFilter'
 import { PostFotm } from '../Components/Form/PostFotm'
 
-
 export const Post = () => {
   const [posts, setPosts] = useState([])
   const [modalof, setMODALOF] = useState(false)
@@ -19,7 +18,6 @@ export const Post = () => {
   const [limit, setLIMIT] = useState(10)
   const [page, setPAGE] = useState(1)
 
-  
   const [Fetching, isLoading, error] = useFetching(async () => {
     const response = await PostService.getAll(limit, page)
     setPosts(response.data)
@@ -60,20 +58,14 @@ export const Post = () => {
       <hr style={{ margin: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       {error && <h1>oштбка: {error}</h1>}
-      {!isLoading ? (
-        <PostList
-          posts={sortedAndSearcedPosts}
-          title='Список постов'
-          ButtonDelet={ButtonDelet}
-        />
-      ) : (
-        <h1>идет загрузка...</h1>
-      )}
+      <PostList
+        posts={sortedAndSearcedPosts}
+        title='Список постов'
+        ButtonDelet={ButtonDelet}
+      />
       <div style={{ marginTop: 10 }}>
         <Pagination page={page} changePage={changePage} totalPage={totalPage} />
       </div>
     </div>
   )
 }
-
-

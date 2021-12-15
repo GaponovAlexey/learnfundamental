@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { About } from '../pages/About'
 import { Login } from '../pages/Login'
 import { Nothing } from '../pages/Nothing'
 import { Post } from '../pages/Post'
+import { MyContext } from './Context/Context'
 import { PostPages } from './PostPages/PostPages'
 
 export const AppRouter = () => {
-  const [isAuth, setISAUTH] = useState(true)
+  const {setISAUTH, isAuth} = useContext(MyContext)
   return (
     <div>
       <Routes >

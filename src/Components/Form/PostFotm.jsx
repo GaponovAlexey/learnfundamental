@@ -14,7 +14,6 @@ export const PostFotm = ({ create }) => {
     setPost({ title: '', body: '' })
   }
 
- 
   return (
     <div>
       <form>
