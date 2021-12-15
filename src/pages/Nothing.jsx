@@ -3,7 +3,7 @@ import React from 'react'
 export const Nothing = () => {
   return (
     <div>
-      Ничего не найдено
+      Ничего не найдено!
     </div>
   )
 }
