@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PostService from '../API/PostServise'
 import { PostList } from '../Components/Item/PostList'
 import { MyModal } from '../Components/UI/Modal/MyModal'
@@ -16,14 +16,26 @@ export const Post = () => {
 
   const [totalPage, setTOTALCOUNT] = useState(0)
   const [limit, setLIMIT] = useState(10)
-  const [page, setPAGE] = useState(1)
+  const [page, setPAGE] = useState(0)
+  const lastElement = useRef()
+  const observer = useRef()
 
   const [Fetching, isLoading, error] = useFetching(async () => {
     const response = await PostService.getAll(limit, page)
-    setPosts(response.data)
+    setPosts([...posts, ...response.data])
     const totalCount = response.headers['x-total-count']
     setTOTALCOUNT(getPageCount(totalCount, limit))
   })
+
+  useEffect(() => {
+    var callback = function (entries, observer) {
+      if (entries[0].isIntersecting) {
+        setPAGE(page + 1)
+      }
+    }
+    observer.current = new IntersectionObserver(callback)
+    observer.current.observe(lastElement.current)
+  }, [isLoading])
 
   const changePage = (page) => {
     setPAGE(page)
@@ -63,6 +75,7 @@ export const Post = () => {
         title='Список постов'
         ButtonDelet={ButtonDelet}
       />
+      <div ref={lastElement} style={{ height: 20, background: 'red' }} />
       <div style={{ marginTop: 10 }}>
         <Pagination page={page} changePage={changePage} totalPage={totalPage} />
       </div>
