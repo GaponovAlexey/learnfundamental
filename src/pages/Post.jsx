@@ -9,6 +9,7 @@ import '../styles/App.css'
 import { getPageCount } from '../utils/page'
 import { PostFilter } from '../Components/Filter/PostFilter'
 import { PostFotm } from '../Components/Form/PostFotm'
+import { useObserver } from '../hook/useObserver'
 
 export const Post = () => {
   const [posts, setPosts] = useState([])
@@ -18,24 +19,19 @@ export const Post = () => {
   const [limit, setLIMIT] = useState(10)
   const [page, setPAGE] = useState(0)
   const lastElement = useRef()
-  const observer = useRef()
 
+  
   const [Fetching, isLoading, error] = useFetching(async () => {
     const response = await PostService.getAll(limit, page)
     setPosts([...posts, ...response.data])
     const totalCount = response.headers['x-total-count']
     setTOTALCOUNT(getPageCount(totalCount, limit))
   })
+  
+  useObserver(lastElement, page < totalPage, isLoading, () => {
+    setPAGE(page + 1)
+  })
 
-  useEffect(() => {
-    var callback = function (entries, observer) {
-      if (entries[0].isIntersecting) {
-        setPAGE(page + 1)
-      }
-    }
-    observer.current = new IntersectionObserver(callback)
-    observer.current.observe(lastElement.current)
-  }, [isLoading])
 
   const changePage = (page) => {
     setPAGE(page)
