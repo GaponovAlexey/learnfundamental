@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/learnfundamental/static/css/main.c970a1ac.chunk.css",
+    "main.js": "/learnfundamental/static/js/main.828ca84b.chunk.js",
+    "main.js.map": "/learnfundamental/static/js/main.828ca84b.chunk.js.map",
+    "runtime-main.js": "/learnfundamental/static/js/runtime-main.3c594029.js",
+    "runtime-main.js.map": "/learnfundamental/static/js/runtime-main.3c594029.js.map",
+    "static/js/2.88f8ba9a.chunk.js": "/learnfundamental/static/js/2.88f8ba9a.chunk.js",
+    "static/js/2.88f8ba9a.chunk.js.map": "/learnfundamental/static/js/2.88f8ba9a.chunk.js.map",
+    "index.html": "/learnfundamental/index.html",
+    "static/css/main.c970a1ac.chunk.css.map": "/learnfundamental/static/css/main.c970a1ac.chunk.css.map",
+    "static/js/2.88f8ba9a.chunk.js.LICENSE.txt": "/learnfundamental/static/js/2.88f8ba9a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c594029.js",
+    "static/js/2.88f8ba9a.chunk.js",
+    "static/css/main.c970a1ac.chunk.css",
+    "static/js/main.828ca84b.chunk.js"
+  ]
+}
