@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { About } from '../pages/About'
 import { Login } from '../pages/Login'
@@ -15,8 +15,8 @@ export const AppRouter = () => {
         {isAuth ? (
           <>
             <Route  path='/posts' element={<Post />} />
-            <Route path='/about' element={<About setISAUTH={setISAUTH} isAuth={isAuth} />} />
             <Route path='/posts/:id' element={<PostPages />} />
+            <Route path='/about' element={<About setISAUTH={setISAUTH} isAuth={isAuth} />} />
             <Route path='*' element={<Nothing />} />
           </>
         ) : (

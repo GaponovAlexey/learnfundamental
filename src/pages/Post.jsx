@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PostService from '../API/PostServise'
 import { PostList } from '../Components/Item/PostList'
 import { MyModal } from '../Components/UI/Modal/MyModal'
@@ -9,6 +9,7 @@ import '../styles/App.css'
 import { getPageCount } from '../utils/page'
 import { PostFilter } from '../Components/Filter/PostFilter'
 import { PostFotm } from '../Components/Form/PostFotm'
+import { useObserver } from '../hook/useObserver'
 
 export const Post = () => {
   const [posts, setPosts] = useState([])
@@ -16,14 +17,21 @@ export const Post = () => {
 
   const [totalPage, setTOTALCOUNT] = useState(0)
   const [limit, setLIMIT] = useState(10)
-  const [page, setPAGE] = useState(1)
+  const [page, setPAGE] = useState(0)
+  const lastElement = useRef()
 
+  
   const [Fetching, isLoading, error] = useFetching(async () => {
     const response = await PostService.getAll(limit, page)
-    setPosts(response.data)
+    setPosts([...posts, ...response.data])
     const totalCount = response.headers['x-total-count']
     setTOTALCOUNT(getPageCount(totalCount, limit))
   })
+  
+  useObserver(lastElement, page < totalPage, isLoading, () => {
+    setPAGE(page + 1)
+  })
+
 
   const changePage = (page) => {
     setPAGE(page)
@@ -63,6 +71,7 @@ export const Post = () => {
         title='Список постов'
         ButtonDelet={ButtonDelet}
       />
+      <div ref={lastElement} style={{ height: 20, background: 'red' }} />
       <div style={{ marginTop: 10 }}>
         <Pagination page={page} changePage={changePage} totalPage={totalPage} />
       </div>
