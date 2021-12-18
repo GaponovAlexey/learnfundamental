@@ -22,6 +22,7 @@ export const PostFotm = ({ create }) => {
           placeholder='Название'
           value={post.title}
           onChange={(e) => setPost({ ...post, title: e.target.value })}
+          
         />
         <MyInput
           type='text'
